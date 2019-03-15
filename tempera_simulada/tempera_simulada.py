@@ -1,6 +1,5 @@
-from classes import No, Problema, Ataque
-from queue import PriorityQueue
-from random import randint, random, choice, uniform
+from tempera_simulada.classes import No
+from random import randint, random, choice
 from math import exp
 
 subValue = lambda l, i, v: l[:i] + [v] + l[i + 1:]

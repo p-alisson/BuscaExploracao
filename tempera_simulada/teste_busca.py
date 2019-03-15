@@ -1,5 +1,5 @@
-from tempera_simulada import simulated_annealing
-from utils import imprimeTabuleiro
+from tempera_simulada.tempera_simulada import simulated_annealing
+from tempera_simulada.utils import imprimeTabuleiro
 
 def main():
     estado_inicial = [2, 0, 6, 4, 7, 1, 3, 5]
