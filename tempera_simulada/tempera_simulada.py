@@ -2,7 +2,7 @@ from tempera_simulada.classes import No
 from random import randint, random, choice
 from math import exp
 
-subValue = lambda l, i, v: l[:i] + [v] + l[i + 1:]
+sub_value = lambda l, i, v: l[:i] + [v] + l[i + 1:]
 f = lambda S: calc_custo(S)
 
 def calc_custo(estado):
@@ -42,7 +42,7 @@ def rand_sucessor(atual):
         l = [x for x in range(tam) if not aux[i] == x]
 
         for j in l:
-            k = subValue(aux, i, j)
+            k = sub_value(aux, i, j)
             successor.append(k)
 
     estado = choice(successor)
