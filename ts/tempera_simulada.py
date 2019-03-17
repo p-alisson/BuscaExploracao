@@ -1,4 +1,4 @@
-from tempera_simulada.classes import No
+from ts.classes import No
 from random import randint, random, choice
 from math import exp
 
@@ -6,7 +6,7 @@ sub_value = lambda l, i, v: l[:i] + [v] + l[i + 1:]
 f = lambda S: calc_custo(S)
 
 def calc_custo(estado):
-    """ Retorna a quantidade de ataques que aquele estado possui """
+
     cont = 0
     tam = len(estado)
     a = [x + estado[x] for x in range(tam)]
