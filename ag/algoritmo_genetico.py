@@ -35,7 +35,7 @@ def selecao(pop_ranked, tam_elite):
                 break
     return result_selecao
 
-def reprodutores(populacao, result_selecao):
+def gera_reprodutores(populacao, result_selecao):
     reprodutores = []
     for i in range(0, len(result_selecao)):
         index = result_selecao[i]
@@ -100,20 +100,20 @@ def transmuta_pop(populacao, taxa_mutacao):
 def prox_geracao(geracao_atual, tam_elite, taxa_mutacao):
     pop_ranked = rank_rotas(geracao_atual)
     result_selecao = selecao(pop_ranked, tam_elite)
-    reprodutores = reproducao(geracao_atual, result_selecao)
+    reprodutores = gera_reprodutores(geracao_atual, result_selecao)
     filhos = cria_geracao(reprodutores, tam_elite)
     prox_geracao = transmuta_pop(filhos, taxa_mutacao)
 
     return prox_geracao
 
 def algoritmo_genetico(populacao, tam_pop, tam_elite, taxa_mutacao, geracoes):
-    pop = cria_geracao(tam_pop, populacao)
+    pop = populacao_inicial(tam_pop, populacao)
     print("Distancia Inicial" + str(1/rank_rotas(pop)[0][1]))
 
     for i in range(0, geracoes):
         pop = prox_geracao(pop, tam_elite, taxa_mutacao)
 
-    print("Distancia Final: " + str(1 / rank_rotas(pop)[0][1]))
+    print("Distancia Final: " + str(1/rank_rotas(pop)[0][1]))
     ind_melhor_rota = rank_rotas(pop)[0][0]
     melhor_rota = pop[ind_melhor_rota]
     return melhor_rota
