@@ -39,7 +39,7 @@ def gera_reprodutores(populacao, result_selecao):
     reprodutores = []
     for i in range(0, len(result_selecao)):
         index = result_selecao[i]
-        reprodutores = populacao[index]
+        reprodutores.append(populacao[index])
 
     return reprodutores
 
