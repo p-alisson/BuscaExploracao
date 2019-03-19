@@ -108,7 +108,7 @@ def prox_geracao(geracao_atual, tam_elite, taxa_mutacao):
 
 def algoritmo_genetico(populacao, tam_pop, tam_elite, taxa_mutacao, geracoes):
     pop = populacao_inicial(tam_pop, populacao)
-    print("Distancia Inicial" + str(1/rank_rotas(pop)[0][1]))
+    print("Distancia Inicial: " + str(1/rank_rotas(pop)[0][1]))
 
     for i in range(0, geracoes):
         pop = prox_geracao(pop, tam_elite, taxa_mutacao)
