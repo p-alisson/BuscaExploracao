@@ -10,6 +10,9 @@ class Cidade:
         y_dis = abs(self.y - cidade.y)
         distancia = np.sqrt((x_dis ** 2)+(y_dis ** 2))
         return distancia
+    def coordenadas(self):
+        cidade = (self.x, self.y)
+        return cidade
 
     def __repr__(self):
         return "(" + str(self.x)+ "," + str(self.y) + ")"

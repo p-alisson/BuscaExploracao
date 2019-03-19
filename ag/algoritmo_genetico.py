@@ -1,5 +1,7 @@
 import random, operator, numpy as np, pandas as pd
-
+import matplotlib.path as mpath
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
 from ag.fitness import Fitness
 
 
@@ -117,3 +119,40 @@ def algoritmo_genetico(populacao, tam_pop, tam_elite, taxa_mutacao, geracoes):
     ind_melhor_rota = rank_rotas(pop)[0][0]
     melhor_rota = pop[ind_melhor_rota]
     return melhor_rota
+
+def algoritmo_genetico_plot(populacao, tam_pop, tam_elite, taxa_mutacao, geracoes):
+    pop = populacao_inicial(tam_pop, populacao)
+    print("Distancia Inicial: " + str(1 / rank_rotas(pop)[0][1]))
+
+    for i in range(0, geracoes):
+        pop = prox_geracao(pop, tam_elite, taxa_mutacao)
+
+    print("Distancia Final: " + str(1 / rank_rotas(pop)[0][1]))
+    ind_melhor_rota = rank_rotas(pop)[0][0]
+    melhor_rota = pop[ind_melhor_rota]
+
+    fig, ax = plt.subplots()
+
+    Path = mpath.Path
+    path_data = []
+    # path_data.append((Path.MOVETO, melhor_rota[0].coordenadas()))
+    for i in range(0, len(melhor_rota)):
+        path_data.append((Path.MOVETO, melhor_rota[i].coordenadas()))
+        # path_data.append(melhor_rota[i].coordenadas())
+    # path_data.append((Path.CLOSEPOLY, melhor_rota[len(melhor_rota)-1].coordenadas()))
+    fig, ax = plt.subplots()
+    path = mpath.Path
+
+    codes, verts = zip(*path_data)
+    path = mpath.Path(verts, codes)
+    # path = mpath.Path(path_data)
+    patch = mpatches.PathPatch(path, facecolor='r', alpha=0.5)
+    ax.add_patch(patch)
+
+    # plot control points and connecting lines
+    x, y = zip(*path.vertices)
+    line, = ax.plot(x, y, 'go-')
+
+    ax.grid()
+    ax.axis('equal')
+    plt.show()
