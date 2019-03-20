@@ -118,6 +118,7 @@ def algoritmo_genetico(populacao, tam_pop, tam_elite, taxa_mutacao, geracoes):
     print("Distancia Final: " + str(1/rank_rotas(pop)[0][1]))
     ind_melhor_rota = rank_rotas(pop)[0][0]
     melhor_rota = pop[ind_melhor_rota]
+    print(melhor_rota)
     return melhor_rota
 
 def algoritmo_genetico_plot(populacao, tam_pop, tam_elite, taxa_mutacao, geracoes):
@@ -131,15 +132,18 @@ def algoritmo_genetico_plot(populacao, tam_pop, tam_elite, taxa_mutacao, geracoe
     ind_melhor_rota = rank_rotas(pop)[0][0]
     melhor_rota = pop[ind_melhor_rota]
 
+    print(melhor_rota)
+
     fig, ax = plt.subplots()
 
     Path = mpath.Path
     path_data = []
-    # path_data.append((Path.MOVETO, melhor_rota[0].coordenadas()))
-    for i in range(0, len(melhor_rota)):
+
+    for i in range(len(melhor_rota)):
         path_data.append((Path.MOVETO, melhor_rota[i].coordenadas()))
-        # path_data.append(melhor_rota[i].coordenadas())
-    # path_data.append((Path.CLOSEPOLY, melhor_rota[len(melhor_rota)-1].coordenadas()))
+
+    path_data.append((Path.CLOSEPOLY, melhor_rota[0].coordenadas()))
+
     fig, ax = plt.subplots()
     path = mpath.Path
 
@@ -149,7 +153,6 @@ def algoritmo_genetico_plot(populacao, tam_pop, tam_elite, taxa_mutacao, geracoe
     patch = mpatches.PathPatch(path, facecolor='r', alpha=0.5)
     ax.add_patch(patch)
 
-    # plot control points and connecting lines
     x, y = zip(*path.vertices)
     line, = ax.plot(x, y, 'go-')
 
